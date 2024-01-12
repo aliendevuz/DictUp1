@@ -1,0 +1,568 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ActivityHome">
+
+    <!--    Welcome page    -->
+
+    <LinearLayout
+        android:id="@+id/page_welcome"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical" />
+
+        <androidx.cardview.widget.CardView
+            app:cardBackgroundColor="@color/back_color"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="0dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="16dp"
+                android:layout_marginHorizontal="40dp"
+                android:text="Xush kelibsiz"
+                android:textSize="24sp"
+                tools:ignore="HardcodedText" />
+
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:text="Ushbu ilova Essential English Words kitobi asosida tuzilgan bo'lib, lug'at yodlashingiz va bilimizngizni sinab ko'rishingizda yordam beradi"
+            android:gravity="center"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginVertical="24dp"
+            android:textSize="16sp"
+            android:textColor="@color/text_color"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_get_start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="54dp"
+            app:cardBackgroundColor="@color/back_color"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="0dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:minWidth="256dp"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="12dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Boshlash"
+                    android:textColor="@color/text_color"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+    <!--    Home page    -->
+
+    <LinearLayout
+        android:id="@+id/page_home"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/app_theme_color"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@color/app_theme_color"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="12dp">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="72dp"
+                app:cardBackgroundColor="@color/back_color"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="0dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginHorizontal="24dp"
+                    android:layout_marginVertical="8dp"
+                    android:gravity="center"
+                    android:text="Bilimingizni oshiring"
+                    android:textColor="@color/text_color"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="12dp"
+            android:layout_weight="1"
+            app:cardBackgroundColor="@color/back_color"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="0dp">
+
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="4dp"
+                android:layout_marginVertical="6dp">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_books"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </androidx.core.widget.NestedScrollView>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_test"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            app:cardBackgroundColor="@color/back_color"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="0dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:minWidth="256dp"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="12dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Bilimni sinash"
+                    android:textColor="@color/text_color"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_missed_words"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="24dp"
+            app:cardBackgroundColor="@color/back_color"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="0dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="12dp"
+                android:gravity="center"
+                android:minWidth="256dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Qiyin so'zlar"
+                    android:textColor="@color/text_color"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+    <!--    Units page    -->
+
+    <LinearLayout
+        android:id="@+id/page_units"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_units"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <!--    Words page    -->
+
+    <LinearLayout
+        android:id="@+id/page_words"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_words"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <!--    Word details    -->
+
+    <LinearLayout
+        android:id="@+id/page_word_details"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/tv_en"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="12dp"
+            android:text="EN"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tv_uz"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="12dp"
+            android:text="UZ"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tv_transcript"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="12dp"
+            android:text="TR"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tv_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="12dp"
+            android:text="TY"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tv_describe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="12dp"
+            android:text="DC"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tv_sample"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="12dp"
+            android:text="SP"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+    <!--    Pick units    -->
+
+    <LinearLayout
+        android:id="@+id/page_pick_units"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:visibility="visible">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="12dp">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="72dp"
+                app:cardBackgroundColor="@color/back_color"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="0dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginHorizontal="24dp"
+                    android:layout_marginVertical="8dp"
+                    android:gravity="center"
+                    android:text="Bilimingizni sinang"
+                    android:textColor="@color/text_color"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginVertical="8dp"
+            app:cardBackgroundColor="@color/back_color"
+            app:cardElevation="0dp"
+            app:cardCornerRadius="16dp">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_test_books"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="8dp"
+                android:paddingHorizontal="4dp" />
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginVertical="12dp"
+            app:cardBackgroundColor="@color/back_color"
+            app:cardElevation="0dp"
+            app:cardCornerRadius="12dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical|end"
+                    android:paddingVertical="12dp">
+
+                    <TextView
+                        android:id="@+id/tv_random"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="12dp"
+                        android:text="Random"
+                        android:textAllCaps="true" />
+
+                    <TextView
+                        android:id="@+id/tv_invert"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="12dp"
+                        android:text="Invert selection"
+                        android:textAllCaps="true" />
+
+                    <TextView
+                        android:id="@+id/tv_select_all"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="12dp"
+                        android:text="Select All"
+                        android:textAllCaps="true" />
+
+                </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_test_units"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:layout_margin="12dp" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_start_test"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="24dp"
+            app:cardBackgroundColor="@color/back_color"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="0dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="12dp"
+                android:gravity="center"
+                android:minWidth="256dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Testni boshlash"
+                    android:textColor="@color/text_color"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+    <!--    Test Page    -->
+
+    <LinearLayout
+        android:id="@+id/page_test"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@color/app_theme_color"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="12dp">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="72dp"
+                app:cardBackgroundColor="@color/back_color"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="0dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginHorizontal="24dp"
+                    android:layout_marginVertical="8dp"
+                    android:gravity="center"
+                    android:text="Test sinovi"
+                    android:textColor="@color/text_color"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginHorizontal="20dp"
+            app:cardBackgroundColor="@color/back_color"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="0dp">
+
+            <TextView
+                android:id="@+id/tv_ask"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginVertical="24dp"
+                android:gravity="center"
+                android:text="Ask"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            app:cardElevation="0dp"
+            app:cardCornerRadius="24dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginHorizontal="20dp"
+            app:cardBackgroundColor="@color/back_color"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="0dp">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_test_answers"
+                android:layout_marginVertical="24dp"
+                android:layout_gravity="center_horizontal|top"
+                android:layout_marginHorizontal="12dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_accept"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            app:cardBackgroundColor="@color/back_color"
+            app:cardCornerRadius="16dp"
+            android:layout_marginBottom="20dp"
+            app:cardElevation="0dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:minWidth="256dp"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="12dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Keyingisi"
+                    android:textColor="@color/text_color"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+</FrameLayout>
