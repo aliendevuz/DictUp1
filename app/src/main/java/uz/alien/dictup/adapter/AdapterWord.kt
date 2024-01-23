@@ -1,5 +1,8 @@
 package uz.alien.dictup.adapter
 
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.net.Uri
 import android.speech.tts.TextToSpeech
 import android.view.LayoutInflater
 import android.view.View
@@ -8,16 +11,21 @@ import androidx.recyclerview.widget.RecyclerView
 import uz.alien.dictup.ActivityHome
 import uz.alien.dictup.App
 import uz.alien.dictup.R
-import uz.alien.dictup.databinding.ItemListBinding
+import uz.alien.dictup.databinding.ItemWordBinding
+import java.io.IOException
+import java.io.InputStream
 
-class AdapterWord(private val activity: ActivityHome) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class AdapterWord(private val activity: ActivityHome) :
+    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    class WordViewHolder(view: View): RecyclerView.ViewHolder(view) {
-        val binding = ItemListBinding.bind(view)
+    class WordViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        val binding = ItemWordBinding.bind(view)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return WordViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_list, parent, false))
+        return WordViewHolder(
+            LayoutInflater.from(parent.context).inflate(R.layout.item_word, parent, false)
+        )
     }
 
     override fun getItemCount(): Int {
@@ -28,22 +36,44 @@ class AdapterWord(private val activity: ActivityHome) : RecyclerView.Adapter<Rec
         if (holder is WordViewHolder) {
 
             val word = App.words[position + App.unitNumber * 20 + App.bookNumber * 600]
-            holder.binding.tvText.text = word.en
+            holder.binding.tvText.text =
+                if (App.home.binding.sEnglish.isChecked) "${word.en}" else "${word.uz}"
 
             holder.binding.root.setOnClickListener {
 
                 activity.openFrame(activity.binding.pageWordDetails) {
 
-                    App.textToSpeech.speak(word.en, TextToSpeech.QUEUE_FLUSH, null, null)
+                    App.handler.postDelayed({
+                        App.textToSpeech.speak(word.en, TextToSpeech.QUEUE_FLUSH, null, null)
+                    }, 600L)
 
-                    activity.binding.tvEn.text = word.en
+                    activity.binding.ivEn.setOnClickListener {
+                        App.textToSpeech.speak(word.en, TextToSpeech.QUEUE_FLUSH, null, null)
+                    }
+                    activity.binding.ivDescribe.setOnClickListener {
+                        App.textToSpeech.speak(word.describe, TextToSpeech.QUEUE_ADD, null, null)
+                    }
+                    activity.binding.ivSample.setOnClickListener {
+                        App.textToSpeech.speak(word.sample, TextToSpeech.QUEUE_ADD, null, null)
+                    }
+
+                    activity.binding.ivWord.setImageBitmap(getBitmapFromAsset("pictures/book${App.bookNumber}/unit${App.unitNumber}/${position}.jpg"))
+                    activity.binding.tvEn.text = "${word.en}  [${word.transcript}] ${word.type}"
                     activity.binding.tvUz.text = word.uz
-                    activity.binding.tvTranscript.text = word.transcript
-                    activity.binding.tvType.text = word.type
-                    activity.binding.tvDescribe.text = word.describe
-                    activity.binding.tvSample.text = word.sample
+                    activity.binding.tvDescribe.text = "${word.describe}"
+                    activity.binding.tvSample.text = "${word.sample}"
                 }
             }
         }
+    }
+
+    private fun getBitmapFromAsset(fileName: String): Bitmap {
+        var istr: InputStream? = null
+        try {
+            istr = activity.assets.open(fileName)
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
+        return BitmapFactory.decodeStream(istr)
     }
 }

@@ -4,13 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="4dp"
-    app:cardBackgroundColor="@color/back_color"
+    app:cardBackgroundColor="@color/back_color_25"
     app:cardCornerRadius="12dp"
     app:cardElevation="0dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_line12">
 
         <TextView
             android:id="@+id/tv_test_book"

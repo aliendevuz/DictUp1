@@ -3,8 +3,7 @@ package uz.alien.dictup.adapter
 
 import android.animation.ArgbEvaluator
 import android.animation.ValueAnimator
-import android.content.res.ColorStateList
-import android.graphics.Color
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,16 +16,24 @@ import uz.alien.dictup.databinding.ItemTestUnitBinding
 import kotlin.random.Random.Default.nextInt
 
 
-class AdapterTestUnit(private val activity: ActivityHome) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class AdapterTestUnit(private val activity: ActivityHome) :
+    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     var clickable = false
+    val duration = 200L
+    val shortDuration = 10L
+    val randomChoice = false
 
     val buttons = HashMap<Int, CardView>()
 
-    class TestUnitViewHolder(view: View) : RecyclerView.ViewHolder(view) { val binding = ItemTestUnitBinding.bind(view) }
+    class TestUnitViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        val binding = ItemTestUnitBinding.bind(view)
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-        TestUnitViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_test_unit, parent, false))
+        TestUnitViewHolder(
+            LayoutInflater.from(parent.context).inflate(R.layout.item_test_unit, parent, false)
+        )
 
     override fun getItemCount() = 30
 
@@ -51,20 +58,16 @@ class AdapterTestUnit(private val activity: ActivityHome) : RecyclerView.Adapter
     }
 
     fun update() {
-
-        for (i in 0 until 30) if (!isClicked(i + App.bookNumber * 30)) {
-            App.home.binding.tvSelectAll.text = "Select All"
-            return
-        }
-        App.home.binding.tvSelectAll.text = "Clear All"
-        return
+        if (App.testUnits.size != 0 && App.testUnits.size <= 5) App.home.binding.sbTestCount.max = App.testUnits.size * 4 - 1
     }
 
     fun setClick(position: Int, unit: Int) {
 
+        if (unit > 179) Log.d("@@@@", "$unit")
         if (!App.testUnits.contains(unit)) {
-            App.testUnits.add(unit)
-            swapColor(position, activity.getColor(R.color.light_blue), 100L)
+            if (unit in 0..179) App.testUnits.add(unit)
+            else Log.d("@@@@", "Warning!!! Qo'shilayotgan unit qiymatdan tashqarida $unit")
+            swapColor(position, activity.getColor(R.color.light_blue), duration)
         }
         update()
     }
@@ -73,7 +76,7 @@ class AdapterTestUnit(private val activity: ActivityHome) : RecyclerView.Adapter
 
         if (App.testUnits.contains(unit)) {
             App.testUnits.remove(unit)
-            swapColor(position, activity.getColor(R.color.back_color), 100L)
+            swapColor(position, activity.getColor(R.color.back_color_25), duration)
         }
         update()
     }
@@ -84,34 +87,76 @@ class AdapterTestUnit(private val activity: ActivityHome) : RecyclerView.Adapter
 
             val unit = k + App.bookNumber * 30
 
-            if (App.testUnits.contains(unit)) swapColor(k, activity.getColor(R.color.light_blue), 100L)
-            else swapColor(k, activity.getColor(R.color.back_color), 100L)
+            App.handler.postDelayed({
+                if (App.testUnits.contains(unit)) swapColor(
+                    k,
+                    activity.getColor(R.color.light_blue),
+                    duration
+                )
+                else swapColor(k, activity.getColor(R.color.back_color_25), duration)
+            }, shortDuration * k)
         }
 
         update()
     }
 
+    fun randomize() {
+        val unitList = IntArray(30) { it }
+        if (randomChoice) unitList.shuffle()
+        val unClickedList = ArrayList<Int>()
+        for (i in unitList) {
+            val unit = i + App.bookNumber * 30
+            if (!App.testUnits.contains(unit)) unClickedList.add(i)
+            if (unClickedList.size == 6) break
+        }
+        for (i in unClickedList) {
+            App.handler.postDelayed({
+                setClick(i, i + App.bookNumber * 30)
+            }, shortDuration * i)
+        }
+    }
+
     fun randomAll() {
-        for (i in 0 until 30) {
-            random(i, i + App.bookNumber * 30)
+        val unitList = IntArray(30) { it }
+        unitList.shuffle()
+        for (i in unitList) {
+            App.handler.postDelayed({
+                if (randomChoice) random(unitList[i], unitList[i] + App.bookNumber * 30)
+                else random(i, i + App.bookNumber * 30)
+            }, shortDuration * i)
         }
     }
 
     fun invertAll() {
-        for (i in 0 until 30) {
-            invert(i, i + App.bookNumber * 30)
+        val unitList = IntArray(30) { it }
+        unitList.shuffle()
+        for (i in unitList) {
+            App.handler.postDelayed({
+                if (randomChoice) invert(unitList[i], unitList[i] + App.bookNumber * 30)
+                else invert(i, i + App.bookNumber * 30)
+            }, shortDuration * i)
         }
     }
 
     fun selectAll() {
-        for (i in 0 until 30) {
-            setClick(i, i + App.bookNumber * 30)
+        val unitList = IntArray(30) { it }
+        unitList.shuffle()
+        for (i in unitList) {
+            App.handler.postDelayed({
+                if (randomChoice) setClick(unitList[i], unitList[i] + App.bookNumber * 30)
+                else setClick(i, i + App.bookNumber * 30)
+            }, shortDuration * i)
         }
     }
 
     fun clearAll() {
+        val unitList = IntArray(30) { it }
+        unitList.shuffle()
         for (i in 0 until 30) {
-            setUnClick(i, i + App.bookNumber * 30)
+            App.handler.postDelayed({
+                if (randomChoice) setUnClick(unitList[i], unitList[i] + App.bookNumber * 30)
+                else setUnClick(i, i + App.bookNumber * 30)
+            }, shortDuration * i)
         }
     }
 
@@ -119,7 +164,11 @@ class AdapterTestUnit(private val activity: ActivityHome) : RecyclerView.Adapter
 
         buttons[position]?.let {
 
-            val colorAnimation = ValueAnimator.ofObject(ArgbEvaluator(), it.cardBackgroundColor.defaultColor, colorTo)
+            val colorAnimation = ValueAnimator.ofObject(
+                ArgbEvaluator(),
+                it.cardBackgroundColor.defaultColor,
+                colorTo
+            )
             colorAnimation.setDuration(duration)
 
             colorAnimation.addUpdateListener { animator ->

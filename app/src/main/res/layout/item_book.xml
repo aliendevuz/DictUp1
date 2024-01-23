@@ -5,33 +5,34 @@
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="2dp"
     android:layout_marginBottom="24dp"
-    app:cardBackgroundColor="@color/back_color"
-    app:cardElevation="0dp"
-    app:cardCornerRadius="12dp">
+    app:cardBackgroundColor="@color/back_color_25"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="0dp">
 
     <LinearLayout
-        android:padding="6.4dp"
-        android:orientation="vertical"
-        android:gravity="center_horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_line12"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="6.4dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <com.google.android.material.imageview.ShapeableImageView
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintDimensionRatio="3:4"
                 android:id="@+id/iv_book"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:scaleType="centerCrop"
-                app:shapeAppearanceOverlay="@style/circular_corner"
-                android:src="@drawable/book1" />
+                android:src="@drawable/book1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="3:4"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:shapeAppearanceOverlay="@style/circular_corner" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -39,9 +40,9 @@
             android:layout_width="40dp"
             android:layout_height="4dp"
             android:layout_marginTop="24dp"
+            app:cardBackgroundColor="@color/text_color"
             app:cardCornerRadius="4dp"
-            app:cardElevation="0dp"
-            app:cardBackgroundColor="@color/text_color"/>
+            app:cardElevation="0dp" />
 
     </LinearLayout>
 

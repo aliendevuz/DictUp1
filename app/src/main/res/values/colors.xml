@@ -3,7 +3,12 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="app_theme_color">#343540</color>
-    <color name="back_color">#40C4C4D0</color>
+    <color name="back_color_25">#40C4C4D0</color>
+    <color name="back_color_50">#80C4C4D0</color>
+    <color name="back_color_75">#BFC4C4D0</color>
+    <color name="back_color_s_25">#585864</color>
+    <color name="back_color_s_50">#7C7C86</color>
+    <color name="back_color_s_75">#A09FAC</color>
     <color name="text_color">#C4C4D0</color>
     <color name="light_blue">#3886FF</color>
     <color name="correct_answer">#5BE660</color>

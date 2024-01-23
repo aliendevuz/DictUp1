@@ -12,43 +12,39 @@
         android:id="@+id/page_welcome"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:gravity="center"
+        android:orientation="vertical"
         android:visibility="gone">
 
-        <LinearLayout
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginVertical="12dp"
+            android:background="@drawable/background_button"
+            android:gravity="center"
+            android:text="Xush kelibsiz!"
+            android:textColor="@color/text_color"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <com.airbnb.lottie.LottieAnimationView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="vertical" />
-
-        <androidx.cardview.widget.CardView
-            app:cardBackgroundColor="@color/back_color"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="0dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="16dp"
-                android:layout_marginHorizontal="40dp"
-                android:text="Xush kelibsiz"
-                android:textSize="24sp"
-                tools:ignore="HardcodedText" />
-
-        </androidx.cardview.widget.CardView>
+            android:layout_weight="2"
+            app:lottie_autoPlay="true"
+            app:lottie_fileName="animation/learn_english.json"
+            app:lottie_loop="true" />
 
         <TextView
-            android:text="Ushbu ilova Essential English Words kitobi asosida tuzilgan bo'lib, lug'at yodlashingiz va bilimizngizni sinab ko'rishingizda yordam beradi"
-            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
             android:layout_marginVertical="24dp"
-            android:textSize="16sp"
+            android:gravity="center"
+            android:text="Ushbu ilova Paul Nationning &quot;4000 Essential English Words&quot; kitobi asosida ishlab chiqilgan bo'lib, kitobdagi so'zlarni yodlashingizda sizga yordam beradi."
             android:textColor="@color/text_color"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:textSize="16sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -56,34 +52,19 @@
             android:layout_weight="1"
             android:orientation="vertical" />
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cv_get_start"
+        <Button
+            android:id="@+id/b_get_start"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
             android:layout_marginBottom="54dp"
-            app:cardBackgroundColor="@color/back_color"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="0dp">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:minWidth="256dp"
-                android:paddingHorizontal="12dp"
-                android:paddingVertical="12dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Boshlash"
-                    android:textColor="@color/text_color"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-            </LinearLayout>
-
-        </androidx.cardview.widget.CardView>
+            android:background="@drawable/background_button"
+            android:minWidth="256dp"
+            android:text="Boshlash"
+            android:textColor="@color/text_color"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:backgroundTint="@null" />
 
     </LinearLayout>
 
@@ -98,118 +79,60 @@
         android:orientation="vertical"
         android:visibility="gone">
 
-        <LinearLayout
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:background="@color/app_theme_color"
-            android:gravity="center_vertical"
-            android:paddingHorizontal="12dp">
+            android:layout_height="72dp"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginVertical="12dp"
+            android:background="@drawable/background_button"
+            android:gravity="center"
+            android:text="Bilimingizni oshiring"
+            android:textColor="@color/text_color"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="72dp"
-                app:cardBackgroundColor="@color/back_color"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="0dp">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginHorizontal="24dp"
-                    android:layout_marginVertical="8dp"
-                    android:gravity="center"
-                    android:text="Bilimingizni oshiring"
-                    android:textColor="@color/text_color"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-            </androidx.cardview.widget.CardView>
-
-        </LinearLayout>
-
-        <androidx.cardview.widget.CardView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginHorizontal="12dp"
-            android:layout_marginTop="12dp"
             android:layout_weight="1"
-            app:cardBackgroundColor="@color/back_color"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="0dp">
+            android:background="@drawable/background_button">
 
-            <androidx.core.widget.NestedScrollView
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_books"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginHorizontal="4dp"
-                android:layout_marginVertical="6dp">
+                android:paddingHorizontal="4dp"
+                android:paddingVertical="24dp" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_books"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+        </LinearLayout>
 
-            </androidx.core.widget.NestedScrollView>
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cv_test"
+        <Button
+            android:id="@+id/b_test"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            app:cardBackgroundColor="@color/back_color"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="0dp">
+            android:background="@drawable/background_button"
+            android:minWidth="256dp"
+            android:text="Bilimni sinash"
+            android:textColor="@color/text_color"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:backgroundTint="@null" />
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:minWidth="256dp"
-                android:paddingHorizontal="12dp"
-                android:paddingVertical="12dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Bilimni sinash"
-                    android:textColor="@color/text_color"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-            </LinearLayout>
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cv_missed_words"
+        <Button
+            android:id="@+id/b_about"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:layout_marginBottom="24dp"
-            app:cardBackgroundColor="@color/back_color"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="0dp">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="12dp"
-                android:gravity="center"
-                android:minWidth="256dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Qiyin so'zlar"
-                    android:textColor="@color/text_color"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-            </LinearLayout>
-
-        </androidx.cardview.widget.CardView>
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="54dp"
+            android:background="@drawable/background_button"
+            android:minWidth="256dp"
+            android:text="Biz haqimizda!"
+            android:textColor="@color/text_color"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:backgroundTint="@null" />
 
     </LinearLayout>
 
@@ -222,10 +145,47 @@
         android:orientation="vertical"
         android:visibility="gone">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_units"
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="72dp"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginVertical="12dp"
+            android:background="@drawable/background_button"
+            android:gravity="center"
+            android:text="Bilimingizni oshiring"
+            android:textColor="@color/text_color"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginBottom="54dp"
+            android:background="@drawable/background_button"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_units"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginVertical="10dp" />
+
+            <Switch
+                android:id="@+id/s_english"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="12dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/background_line_25_8"
+                android:checked="true"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="12dp"
+                android:text="Inglizcha yodlash" />
+
+        </LinearLayout>
 
     </LinearLayout>
 
@@ -236,12 +196,38 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:visibility="gone">
+        android:visibility="visible">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_words"
+        <androidx.core.widget.NestedScrollView
+            android:scrollbarSize="0dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_words"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="12dp"
+                    android:layout_marginHorizontal="12dp" />
+
+                <TextView
+                    android:id="@+id/tv_story"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="12dp"
+                    android:layout_marginVertical="12dp"
+                    android:padding="12dp"
+                    android:background="@drawable/background_button"
+                    android:text="Story" />
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
 
     </LinearLayout>
 
@@ -252,55 +238,114 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:paddingHorizontal="24dp"
         android:visibility="gone">
 
-        <TextView
-            android:id="@+id/tv_en"
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_marginTop="54dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="12dp"
-            android:text="EN"
-            android:textSize="18sp" />
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="84dp"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/background_button">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/iv_word"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_margin="1dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/book1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:shapeAppearanceOverlay="@style/circular_corner_16" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_en"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:text="afraid [e'fraid] n."
+                android:textSize="18sp" />
+
+            <ImageView
+                android:id="@+id/iv_en"
+                android:layout_width="wrap_content"
+                android:layout_marginEnd="12dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/baseline_volume_up_24"/>
+
+        </LinearLayout>
 
         <TextView
             android:id="@+id/tv_uz"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="12dp"
-            android:text="UZ"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginBottom="24dp"
+            android:text="qo'rqqan, cho'chigan"
             android:textSize="18sp" />
 
-        <TextView
-            android:id="@+id/tv_transcript"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="12dp"
-            android:text="TR"
-            android:textSize="18sp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/tv_type"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="12dp"
-            android:text="TY"
-            android:textSize="18sp" />
+            <TextView
+                android:id="@+id/tv_describe"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:text="description"
+                android:textSize="18sp" />
 
-        <TextView
-            android:id="@+id/tv_describe"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="12dp"
-            android:text="DC"
-            android:textSize="18sp" />
+            <ImageView
+                android:id="@+id/iv_describe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="12dp"
+                android:layout_marginStart="24dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/baseline_volume_up_24"/>
 
-        <TextView
-            android:id="@+id/tv_sample"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="12dp"
-            android:text="SP"
-            android:textSize="18sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_sample"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:text="sample"
+                android:textSize="18sp" />
+
+            <ImageView
+                android:id="@+id/iv_sample"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="12dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/baseline_volume_up_24"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 
@@ -310,144 +355,166 @@
         android:id="@+id/page_pick_units"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:gravity="center"
-        android:visibility="visible">
+        android:orientation="vertical"
+        android:visibility="gone">
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginVertical="12dp"
+            android:background="@drawable/background_button"
+            android:gravity="center"
+            android:text="Unitlarni tanlang"
+            android:textColor="@color/text_color"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:gravity="center_vertical"
-            android:paddingHorizontal="12dp">
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="72dp"
-                app:cardBackgroundColor="@color/back_color"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="0dp">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginHorizontal="24dp"
-                    android:layout_marginVertical="8dp"
-                    android:gravity="center"
-                    android:text="Bilimingizni sinang"
-                    android:textColor="@color/text_color"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-            </androidx.cardview.widget.CardView>
-
-        </LinearLayout>
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:layout_marginHorizontal="12dp"
             android:layout_marginVertical="8dp"
-            app:cardBackgroundColor="@color/back_color"
-            app:cardElevation="0dp"
-            app:cardCornerRadius="16dp">
+            android:background="@drawable/background_button">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_test_books"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingVertical="8dp"
-                android:paddingHorizontal="4dp" />
+                android:paddingHorizontal="4dp"
+                android:paddingVertical="8dp" />
 
-        </androidx.cardview.widget.CardView>
+        </LinearLayout>
 
-        <androidx.cardview.widget.CardView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
             android:layout_marginHorizontal="12dp"
             android:layout_marginVertical="12dp"
-            app:cardBackgroundColor="@color/back_color"
-            app:cardElevation="0dp"
-            app:cardCornerRadius="12dp">
+            android:layout_weight="1"
+            android:background="@drawable/background_button"
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="12dp">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/tv_select_all"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:gravity="center_vertical|end"
-                    android:paddingVertical="12dp">
-
-                    <TextView
-                        android:id="@+id/tv_random"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="12dp"
-                        android:text="Random"
-                        android:textAllCaps="true" />
-
-                    <TextView
-                        android:id="@+id/tv_invert"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="12dp"
-                        android:text="Invert selection"
-                        android:textAllCaps="true" />
-
-                    <TextView
-                        android:id="@+id/tv_select_all"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="12dp"
-                        android:text="Select All"
-                        android:textAllCaps="true" />
-
-                </LinearLayout>
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_test_units"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginBottom="2dp"
                     android:layout_weight="1"
-                    android:layout_margin="12dp" />
+                    android:background="@drawable/background_line"
+                    android:gravity="center"
+                    android:paddingVertical="2dp"
+                    android:text="Select All"
+                    android:textAllCaps="true"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tv_random"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginBottom="2dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/background_line"
+                    android:gravity="center"
+                    android:paddingVertical="2dp"
+                    android:text="Random"
+                    android:textAllCaps="true"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tv_invert"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginBottom="2dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/background_line"
+                    android:gravity="center"
+                    android:paddingVertical="2dp"
+                    android:text="Invert"
+                    android:textAllCaps="true"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tv_clear"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="2dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/background_line"
+                    android:gravity="center"
+                    android:paddingVertical="2dp"
+                    android:text="Clear"
+                    android:textAllCaps="true"
+                    android:textSize="12sp" />
 
             </LinearLayout>
 
-        </androidx.cardview.widget.CardView>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_test_units"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_margin="10dp"
+                android:layout_weight="1" />
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cv_start_test"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="12dp"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/background_line_25_8"
+                android:orientation="horizontal"
+                android:paddingVertical="7.4dp">
+
+                <SeekBar
+                    android:id="@+id/sb_test_count"
+                    style="@style/Widget.AppCompat.SeekBar.Discrete"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginTop="1.34dp"
+                    android:layout_weight="1"
+                    android:max="3"
+                    android:progress="3" />
+
+                <TextView
+                    android:id="@+id/tv_test_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="12dp"
+                    android:gravity="end"
+                    android:minWidth="40dp"
+                    android:text="20" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/b_start_test"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:layout_marginBottom="24dp"
-            app:cardBackgroundColor="@color/back_color"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="0dp">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="12dp"
-                android:gravity="center"
-                android:minWidth="256dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Testni boshlash"
-                    android:textColor="@color/text_color"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-            </LinearLayout>
-
-        </androidx.cardview.widget.CardView>
+            android:background="@drawable/background_button"
+            android:minWidth="256dp"
+            android:text="Testni boshlash"
+            android:textColor="@color/text_color"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:backgroundTint="@null" />
 
     </LinearLayout>
 
@@ -461,107 +528,221 @@
         android:orientation="vertical"
         android:visibility="gone">
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/background_button"
+            android:gravity="center"
+            android:text="Test sinovi"
+            android:textColor="@color/text_color"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:background="@color/app_theme_color"
-            android:gravity="center_vertical"
-            android:paddingHorizontal="12dp">
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginVertical="24dp"
+            android:background="@drawable/background_button"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingVertical="12dp">
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="72dp"
-                app:cardBackgroundColor="@color/back_color"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="0dp">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginHorizontal="24dp"
-                    android:layout_marginVertical="8dp"
-                    android:gravity="center"
-                    android:text="Test sinovi"
-                    android:textColor="@color/text_color"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-            </androidx.cardview.widget.CardView>
-
-        </LinearLayout>
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginHorizontal="20dp"
-            app:cardBackgroundColor="@color/back_color"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="0dp">
+            <TextView
+                android:id="@+id/tv_test_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1/20"
+                android:textColor="@color/text_color"
+                android:textSize="16dp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/tv_ask"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginHorizontal="24dp"
-                android:layout_marginVertical="24dp"
-                android:gravity="center"
-                android:text="Ask"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            app:cardElevation="0dp"
-            app:cardCornerRadius="24dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginHorizontal="20dp"
-            app:cardBackgroundColor="@color/back_color"
-            android:layout_width="match_parent"
-            android:layout_weight="1"
-            android:layout_height="0dp">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_test_answers"
-                android:layout_marginVertical="24dp"
-                android:layout_gravity="center_horizontal|top"
-                android:layout_marginHorizontal="12dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cv_accept"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            app:cardBackgroundColor="@color/back_color"
-            app:cardCornerRadius="16dp"
-            android:layout_marginBottom="20dp"
-            app:cardElevation="0dp">
-
-            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:minWidth="256dp"
-                android:paddingHorizontal="12dp"
-                android:paddingVertical="12dp">
+                android:paddingVertical="12dp"
+                android:text="Ask"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Keyingisi"
-                    android:textColor="@color/text_color"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+        </LinearLayout>
 
-            </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="12dp"
+            android:layout_weight="1"
+            android:background="@drawable/background_button">
 
-        </androidx.cardview.widget.CardView>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_test_answers"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="40dp"
+                android:layout_marginVertical="24dp" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/b_accept"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/background_button"
+            android:minWidth="256dp"
+            android:text="Keyingisi"
+            android:textColor="@color/text_color"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:backgroundTint="@null" />
+
+    </LinearLayout>
+
+    <!--    Result Page    -->
+
+    <LinearLayout
+        android:id="@+id/page_result"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/tv_correct_answers"
+            android:layout_width="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="To'g'ri javoblar soni - 0 ta"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tv_incorrect_answers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Noto'g'ri javoblar soni - 0 ta"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tv_ball"
+            android:layout_marginTop="24dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="To'plagan balingiz 100%"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
+<!--    About    -->
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:paddingHorizontal="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/page_about">
+
+        <LinearLayout
+            android:layout_marginTop="54dp"
+            android:background="@drawable/background_line8"
+            android:orientation="vertical"
+            android:padding="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="24dp"
+                android:text="Kitob muallifi:" />
+
+            <TextView
+                android:textSize="16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Name: Paul Nation" />
+
+            <TextView
+                android:id="@+id/tv_author"
+                android:layout_width="wrap_content"
+                android:textSize="16sp"
+                android:layout_height="wrap_content"
+                android:text="More about: wiki/Paul_Nation" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="54dp"
+            android:background="@drawable/background_line8"
+            android:orientation="vertical"
+            android:padding="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="24dp"
+                android:text="Ilova g'oyasi:" />
+
+            <TextView
+                android:textSize="16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Name: &quot;Umidli yoshlar&quot; team" />
+
+            <TextView
+                android:id="@+id/tv_contact1"
+                android:layout_width="wrap_content"
+                android:textSize="16sp"
+                android:layout_height="wrap_content"
+                android:text="Contact: t.me/abc_2202" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="54dp"
+            android:background="@drawable/background_line8"
+            android:orientation="vertical"
+            android:padding="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:textSize="20sp"
+                android:layout_gravity="center"
+                android:text="Dasturchi:" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:textSize="16sp"
+                android:layout_height="wrap_content"
+                android:text="Name: Alien Dev" />
+
+            <TextView
+                android:id="@+id/tv_contact2"
+                android:layout_width="wrap_content"
+                android:textSize="16sp"
+                android:layout_height="wrap_content"
+                android:text="Contact: linkedin.com/in/aliendevuz" />
+
+        </LinearLayout>
 
     </LinearLayout>
 
