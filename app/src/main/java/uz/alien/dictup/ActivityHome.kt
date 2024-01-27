@@ -1,7 +1,6 @@
 package uz.alien.dictup
 
 
-import android.R
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.text.SpannableString
@@ -12,7 +11,6 @@ import android.view.MotionEvent
 import android.view.View
 import android.widget.SeekBar
 import android.widget.SeekBar.OnSeekBarChangeListener
-import android.widget.TextView
 import android.widget.Toast
 import uz.alien.dictup.adapter.AdapterBook
 import uz.alien.dictup.adapter.AdapterTestBook
@@ -175,18 +173,10 @@ class ActivityHome : Activity() {
                                 if (adapter.currentTest >= App.testCount - 1)
                                     openFrame(binding.pageResult) {
                                         val size = adapter.incorrectAnswers.size
-                                        if (size == 0) {
-                                            binding.tvIncorrectAnswers.text = "Tabriklayman 🥳\nBarchasini to'g'ri topdingiz!"
-                                            binding.tvCorrectAnswers.visibility = View.GONE
-                                            binding.tvBall.visibility = View.GONE
-                                        }
-                                        else {
-                                            binding.tvCorrectAnswers.visibility = View.VISIBLE
-                                            binding.tvCorrectAnswers.text = "To'g'ri javoblar soni - ${App.testCount - size} ta"
-                                            binding.tvIncorrectAnswers.text = "Noto'g'ri javoblar soni - ${size} ta"
-                                            binding.tvBall.visibility = View.VISIBLE
-                                            binding.tvBall.text = "Sizning natijangiz ${100 - ((size.toFloat() / App.testCount.toFloat()) * 100.0).toInt()}%"
-                                        }
+                                        binding.tvCorrectAnswers.text = "To'g'ri javoblar soni - ${App.testCount - size} ta"
+                                        binding.tvIncorrectAnswers.text = "Noto'g'ri javoblar soni - ${size} ta"
+                                        binding.tvBall.text = "Sizning natijangiz ${(App.testCount - size) * 100 / App.testCount}%"
+                                        binding.tvCongrats.visibility = if (size == 0) View.VISIBLE else View.GONE
                                     }
                                 else {
                                     adapter.currentTest++
@@ -216,6 +206,9 @@ class ActivityHome : Activity() {
                 binding.tvContact1.movementMethod = LinkMovementMethod.getInstance()
                 binding.tvContact2.movementMethod = LinkMovementMethod.getInstance()
             }
+        }
+        binding.ibBack.setOnClickListener {
+            onBackPressed()
         }
     }
 }

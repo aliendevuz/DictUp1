@@ -381,7 +381,7 @@
 <EN>achieve</EN> <UZ>erishmoq, qo'lga kiritmoq</UZ> <TR>əˈtʃiːv</TR> <TY>v.</TY> <DC>To achieve something is to successfully do it after trying hard.</DC> <SP>→ I was happy that I could achieve my goal.</SP>
 <EN>advise</EN> <UZ>maslahat bermoq</UZ> <TR>ədˈvʌɪz</TR> <TY>v.</TY> <DC>To advise someone is to tell them what to do.</DC> <SP>→ My mother often advises people about their money.</SP>
 <EN>already</EN> <UZ>allaqachon</UZ> <TR>ɔːlˈrɛdi</TR> <TY>adv.</TY> <DC>If something happens already, it happens before a certain time.</DC> <SP>→ It is already time for the movie to start. Let’s go in.</SP>
-<EN>basic</EN> <UZ>oddiy, soda, oson</UZ> <TR>ˈbeɪsɪk</TR> <TY>adj.</TY> <DC>If something is basic, it is very simple or easy.</DC> <SP>→ I learned some basic English skills in school today.</SP>
+<EN>basic</EN> <UZ>oddiy, sodda, oson</UZ> <TR>ˈbeɪsɪk</TR> <TY>adj.</TY> <DC>If something is basic, it is very simple or easy.</DC> <SP>→ I learned some basic English skills in school today.</SP>
 <EN>bit</EN> <UZ>bo'lak, parcha, burda</UZ> <TR>bɪt</TR> <TY>n.</TY> <DC>A bit is a small amount of something.</DC> <SP>→ I ate a bit of chocolate before I went to bed.</SP>
 <EN>consider</EN> <UZ>haqida o'ylamoq, o'ylab ko'rmoq</UZ> <TR>kənˈsɪdə</TR> <TY>v.</TY> <DC>To consider something means to think about it.</DC> <SP>→ Pete didn’t like his job. He considered getting a new one.</SP>
 <EN>destroy</EN> <UZ>vayroq qilmoq, xarob qilmoq</UZ> <TR>dɪˈstrɔɪ</TR> <TY>v.</TY> <DC>To destroy means to damage something so badly that it cannot be used.</DC> <SP>→ The glass was destroyed.</SP>
