@@ -7,12 +7,10 @@
     app:cardBackgroundColor="@color/back_color_25"
     app:cardCornerRadius="12dp"
     app:cardElevation="0dp">
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/background_line12">
-
+        android:background="@drawable/back_b_line_12">
         <TextView
             android:id="@+id/tv_test_book"
             android:layout_width="match_parent"
@@ -22,7 +20,5 @@
             android:textStyle="bold"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintTop_toTopOf="parent" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </androidx.cardview.widget.CardView>

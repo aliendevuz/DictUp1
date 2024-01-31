@@ -12,24 +12,18 @@ import androidx.core.view.children
 import uz.alien.dictup.App
 
 
-open class Activity(var duration: Long = 150L, var longDuration: Long = duration * 3) :
-    AppCompatActivity() {
-
+open class Activity(var duration: Long = 150L, var longDuration: Long = duration * 3) : AppCompatActivity() {
     lateinit var bInactive: Button
-
     val fadeIn = AlphaAnimation(0.0f, 1.0f)
     val fadeOut = AlphaAnimation(1.0f, 0.0f)
     val fadeInLong = AlphaAnimation(0.0f, 1.0f)
     val fadeOutLong = AlphaAnimation(1.0f, 0.0f)
-
     private var isNotBackable = false
     private var causeMessage = ""
-
     var isUnbackable = false
     var isBackPressAvailable = true
     val openedFrames = ArrayList<LinearLayout>()
     lateinit var currentFrame: LinearLayout
-
     fun initialize(root: FrameLayout) {
         fadeIn.duration = duration
         fadeOut.duration = duration
@@ -37,27 +31,19 @@ open class Activity(var duration: Long = 150L, var longDuration: Long = duration
         fadeOutLong.duration = longDuration
         setContentView(root)
         bInactive = Button(this)
-        bInactive.layoutParams = FrameLayout.LayoutParams(
-            FrameLayout.LayoutParams.MATCH_PARENT,
-            FrameLayout.LayoutParams.MATCH_PARENT
-        )
+        bInactive.layoutParams = FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT)
         bInactive.alpha = 0.0f
         root.addView(bInactive)
-        for (child in root.children) {
-            child.visibility = View.GONE
-        }
+        for (child in root.children) child.visibility = View.GONE
     }
-
     fun setNotBackable(cause: String) {
         isNotBackable = true
         causeMessage = cause
     }
-
     fun resetBackable() {
         isNotBackable = false
         causeMessage = ""
     }
-
     fun startFrame(frame: LinearLayout, runnable: Runnable = Runnable {}) {
         resetBackable()
         frame.alpha = 0.0f
@@ -66,12 +52,8 @@ open class Activity(var duration: Long = 150L, var longDuration: Long = duration
         currentFrame = frame
         openedFrames.add(frame)
         runnable.run()
-        App.handler.post {
-            frame.startAnimation(fadeInLong)
-            frame.alpha = 1.0f
-        }
+        App.handler.post { frame.startAnimation(fadeInLong); frame.alpha = 1.0f }
     }
-
     fun startFrameUnbackable(frame: LinearLayout, runnable: Runnable = Runnable {}) {
         resetBackable()
         frame.alpha = 0.0f
@@ -79,12 +61,8 @@ open class Activity(var duration: Long = 150L, var longDuration: Long = duration
         isUnbackable = true
         currentFrame = frame
         runnable.run()
-        App.handler.post {
-            frame.startAnimation(fadeInLong)
-            frame.alpha = 1.0f
-        }
+        App.handler.post { frame.startAnimation(fadeInLong); frame.alpha = 1.0f }
     }
-
     fun openFrame(frame: LinearLayout, runnable: Runnable = Runnable {}) {
         resetBackable()
         bInactive.visibility = View.VISIBLE
@@ -104,7 +82,6 @@ open class Activity(var duration: Long = 150L, var longDuration: Long = duration
             }, duration)
         }
     }
-
     fun openFrameLong(frame: LinearLayout, runnable: Runnable = Runnable {}) {
         resetBackable()
         bInactive.visibility = View.VISIBLE
@@ -119,14 +96,10 @@ open class Activity(var duration: Long = 150L, var longDuration: Long = duration
                 isUnbackable = false
                 currentFrame = frame
                 openedFrames.add(frame)
-                App.handler.post {
-                    frame.alpha = 1.0f
-                    frame.startAnimation(fadeInLong)
-                }
+                App.handler.post { frame.alpha = 1.0f; frame.startAnimation(fadeInLong) }
             }, longDuration)
         }
     }
-
     fun openUnbackableFrame(frame: LinearLayout, runnable: Runnable = Runnable {}) {
         bInactive.visibility = View.VISIBLE
         currentFrame.startAnimation(fadeOut)
@@ -138,13 +111,9 @@ open class Activity(var duration: Long = 150L, var longDuration: Long = duration
             isUnbackable = true
             currentFrame = frame
             runnable.run()
-            App.handler.post {
-                frame.alpha = 1.0f
-                frame.startAnimation(fadeIn)
-            }
+            App.handler.post { frame.alpha = 1.0f; frame.startAnimation(fadeIn) }
         }, duration)
     }
-
     fun openUnbackableFrameLong(frame: LinearLayout, runnable: Runnable = Runnable {}) {
         bInactive.visibility = View.VISIBLE
         frame.alpha = 0.0f
@@ -157,14 +126,10 @@ open class Activity(var duration: Long = 150L, var longDuration: Long = duration
                 bInactive.visibility = View.GONE
                 isUnbackable = true
                 currentFrame = frame
-                App.handler.post {
-                    frame.alpha = 1.0f
-                    frame.startAnimation(fadeInLong)
-                }
+                App.handler.post { frame.alpha = 1.0f; frame.startAnimation(fadeInLong) }
             }, longDuration)
         }
     }
-
     fun backFrame() {
         bInactive.visibility = View.VISIBLE
         currentFrame.startAnimation(fadeOut)
@@ -177,13 +142,9 @@ open class Activity(var duration: Long = 150L, var longDuration: Long = duration
             frame.visibility = View.VISIBLE
             isUnbackable = false
             currentFrame = frame
-            App.handler.post {
-                frame.alpha = 1.0f
-                frame.startAnimation(fadeIn)
-            }
+            App.handler.post { frame.alpha = 1.0f; frame.startAnimation(fadeIn) }
         }, duration)
     }
-
     fun backUnbackableFrame() {
         bInactive.visibility = View.VISIBLE
         currentFrame.startAnimation(fadeOut)
@@ -195,21 +156,9 @@ open class Activity(var duration: Long = 150L, var longDuration: Long = duration
             frame.visibility = View.VISIBLE
             isUnbackable = false
             currentFrame = frame
-            App.handler.post {
-                frame.alpha = 1.0f
-                frame.startAnimation(fadeIn)
-            }
+            App.handler.post { frame.alpha = 1.0f; frame.startAnimation(fadeIn) }
         }, duration)
     }
-
-    @Deprecated(
-        "Deprecated in Java",
-        ReplaceWith(
-            "if (openedFrames.size > 1) if (isUnbackable) backUnbackableFrame() else backFrame() else super.onBackPressed()",
-            "androidx.appcompat.app.AppCompatActivity"
-        )
-    )
-    @Suppress("DEPRECATION")
     override fun onBackPressed() {
         if (!isNotBackable) {
             if (isBackPressAvailable)
@@ -218,8 +167,6 @@ open class Activity(var duration: Long = 150L, var longDuration: Long = duration
                     isBackPressAvailable = false
                     App.handler.postDelayed({ isBackPressAvailable = true }, duration)
                 } else super.onBackPressed()
-        } else {
-            Toast.makeText(this, causeMessage, Toast.LENGTH_SHORT).show()
-        }
+        } else Toast.makeText(this, causeMessage, Toast.LENGTH_SHORT).show()
     }
 }

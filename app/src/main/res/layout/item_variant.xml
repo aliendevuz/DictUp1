@@ -8,16 +8,14 @@
     app:cardBackgroundColor="@color/back_color_25"
     app:cardCornerRadius="12dp"
     app:cardElevation="0dp">
-
     <TextView
         android:id="@+id/tv_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/background_line12"
+        android:background="@drawable/back_b_line_12"
         android:gravity="center"
         android:paddingHorizontal="12dp"
         android:paddingVertical="8dp"
         android:textSize="16sp"
         android:textStyle="bold" />
-
 </androidx.cardview.widget.CardView>

@@ -20,7 +20,6 @@ import kotlin.random.Random
 
 
 class AdapterVariant : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-
     lateinit var correctAnswer: Word
     val buttons = ArrayList<CardView>()
     val testWords = ArrayList<Word>()
@@ -32,44 +31,26 @@ class AdapterVariant : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     var currentTest = 0
     var testLanguage = true
     var isCheckable = true
-
     class VariantViewHolder(view: View) : RecyclerView.ViewHolder(view) { val binding = ItemVariantBinding.bind(view) }
     override fun getItemCount() = variantCount
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder = VariantViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_variant, parent, false))
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is VariantViewHolder) {
-            if (buttons.size != variantCount) {
-                buttons.add(holder.binding.root)
-                Log.d("@@@@", "variant $position added!")
-            }
+            if (buttons.size != variantCount) buttons.add(holder.binding.root)
             holder.binding.tvText.text = "variant ${position + 1}"
             holder.binding.root.setOnClickListener { check(position) }
         }
     }
-
-    fun setVariant(position: Int, answer: String) {
-        try {
-            val tv = buttons[position].getChildAt(0) as TextView
-            tv.text = answer
-        } catch (e: Exception) {
-            Log.d("@@@@", "${buttons.size}")
-        }
-    }
-
+    fun setVariant(position: Int, answer: String) { val tv = buttons[position].getChildAt(0) as TextView; tv.text = answer }
     fun setColor(position: Int, color: Int) { buttons[position].setCardBackgroundColor(color) }
-
     fun swapColor(position: Int, colorTo: Int, duration: Long = 200L) {
         buttons[position].let {
             val colorAnimation = ValueAnimator.ofObject(ArgbEvaluator(), it.cardBackgroundColor.defaultColor, colorTo)
             colorAnimation.setDuration(duration)
-            colorAnimation.addUpdateListener { animator ->
-                buttons[position].setCardBackgroundColor(animator.animatedValue as Int)
-            }
+            colorAnimation.addUpdateListener { animator -> buttons[position].setCardBackgroundColor(animator.animatedValue as Int) }
             colorAnimation.start()
         }
     }
-
-
     fun next() {
         App.home.openUnbackableFrame(App.home.binding.pageTest) {
             App.home.setNotBackable("Testni oxirigacha bajarish shart!")
@@ -83,8 +64,7 @@ class AdapterVariant : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             select.remove(correctAnswer)
             variants.add(correctAnswer)
             App.home.binding.tvTestNumber.text = "${currentTest + 1}/${App.testCount}"
-            App.home.binding.tvAsk.text =
-                "${if (testLanguage) correctAnswer.en else correctAnswer.uz}"
+            App.home.binding.tvAsk.text = "${if (testLanguage) correctAnswer.en else correctAnswer.uz}"
             select.shuffle()
             for (i in 1 until variantCount) variants.add(select.removeAt(0))
             variants.shuffle()
@@ -95,7 +75,6 @@ class AdapterVariant : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             }
         }
     }
-
     fun check(ans: Int) {
         if (isCheckable) if (ans in 0 until variantCount) {
             if ((if (testLanguage) variants[ans].uz else variants[ans].en) == (if (testLanguage) correctAnswer.uz else correctAnswer.en)) {
@@ -104,13 +83,10 @@ class AdapterVariant : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 App.soundPool.play(1, 1.0f, 1.0f, 0, 0, 1.0f)
                 App.update(correctAnswer.id, 1)
                 isCheckable = false
-                if (currentTest >= App.testCount - 1) App.home.binding.bAccept.text =
-                    "Natijani ko'rish"
+                if (currentTest >= App.testCount - 1) App.home.binding.bAccept.text = "Natijani ko'rish"
             } else {
                 if (buttons[ans].cardBackgroundColor.defaultColor != App.home.getColor(R.color.incorrect_answer)) {
-                    if (incorrectAnswers.containsKey(currentTest)) incorrectAnswers[currentTest] =
-                        incorrectAnswers[currentTest]!! + 1
-                    else incorrectAnswers[currentTest] = 1
+                    if (incorrectAnswers.containsKey(currentTest)) incorrectAnswers[currentTest] = incorrectAnswers[currentTest]!! + 1 else incorrectAnswers[currentTest] = 1
                     swapColor(ans, App.app.getColor(R.color.incorrect_answer))
                     App.soundPool.play(2, 1.0f, 1.0f, 0, 0, 1.0f)
                     App.update(correctAnswer.id, -1)
@@ -118,7 +94,6 @@ class AdapterVariant : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             }
         }
     }
-
     fun createTestList() {
         currentTest = 0
         testWords.clear()

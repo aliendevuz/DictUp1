@@ -7,23 +7,18 @@
     app:cardBackgroundColor="@color/back_color_25"
     app:cardCornerRadius="12dp"
     app:cardElevation="0dp">
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/background_line12">
-
+        android:background="@drawable/back_b_line_12">
         <TextView
             android:id="@+id/tv_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="12dp"
             android:layout_marginVertical="5dp"
-
             android:gravity="center"
             android:textSize="16sp"
             android:textStyle="bold" />
-
     </LinearLayout>
-
 </androidx.cardview.widget.CardView>
