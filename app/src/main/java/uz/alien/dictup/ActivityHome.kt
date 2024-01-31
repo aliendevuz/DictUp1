@@ -22,15 +22,23 @@ import uz.alien.dictup.source.CustomLayoutManager
 
 
 class ActivityHome : Activity() {
+
     lateinit var binding: ActivityHomeBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         App.home = this
         binding = ActivityHomeBinding.inflate(layoutInflater)
         initialize(binding.root)
         if (App.getBoolean("welcome_showed")) startFrame(binding.pageHome, startHomeTasks)
-        else startFrameUnbackable(binding.pageWelcome) { binding.bGetStart.setOnClickListener { App.saveValue("welcome_showed", true); openFrameLong(binding.pageHome, startHomeTasks) } }
+        else startFrameUnbackable(binding.pageWelcome) {
+            binding.bGetStart.setOnClickListener {
+                App.saveValue("welcome_showed", true)
+                openFrameLong(binding.pageHome, startHomeTasks)
+            }
+        }
     }
+
     var isScrollable = true
     var isPosChanged = false
     var isDone = false
@@ -40,6 +48,7 @@ class ActivityHome : Activity() {
     var currentX = -1.0f
     var currentY = -1.0f
     val range = 10
+
     @SuppressLint("ClickableViewAccessibility")
     val startHomeTasks = {
         binding.rvBooks.layoutManager = CustomLayoutManager(this, 3)
@@ -58,22 +67,51 @@ class ActivityHome : Activity() {
                             startY = event.y
                             currentX = event.x
                             currentY = event.y
-                            binding.rvTestUnits.findChildViewUnder(event.x, event.y)?.let { position = binding.rvTestUnits.getChildAdapterPosition(it); unitAdapter.clickable = unitAdapter.isClicked(position + App.bookNumber * 30) }
-                            App.handler.postDelayed({ if (!isPosChanged) binding.rvTestUnits.findChildViewUnder(currentX, currentY)?.let { isScrollable = if (position == binding.rvTestUnits.getChildAdapterPosition(it)) { unitAdapter.invert(position, position + App.bookNumber * 30); App.vibrator.vibrate(40); false } else true }; isDone = true }, 500L)
+                            binding.rvTestUnits.findChildViewUnder(event.x, event.y)?.let {
+                                position = binding.rvTestUnits.getChildAdapterPosition(it)
+                                unitAdapter.clickable =
+                                    unitAdapter.isClicked(position + App.bookNumber * 30)
+                            }
+                            App.handler.postDelayed({
+                                if (!isPosChanged) {
+                                    binding.rvTestUnits.findChildViewUnder(currentX, currentY)
+                                        ?.let {
+                                            isScrollable =
+                                                if (position == binding.rvTestUnits.getChildAdapterPosition(
+                                                        it
+                                                    )
+                                                ) {
+                                                    unitAdapter.invert(
+                                                        position,
+                                                        position + App.bookNumber * 30
+                                                    )
+                                                    App.vibrator.vibrate(40)
+                                                    false
+                                                } else true
+                                        }
+                                }
+                                isDone = true
+                            }, 500L)
                         }
+
                         MotionEvent.ACTION_MOVE -> {
                             currentX = event.x
                             currentY = event.y
-                            isPosChanged = (event.x < startX - range || startX + range < event.x || event.y < startY - range || startY + range < event.y) && !isDone
+                            isPosChanged =
+                                (event.x < startX - range || startX + range < event.x || event.y < startY - range || startY + range < event.y) && !isDone
                             binding.rvTestUnits.findChildViewUnder(event.x, event.y)?.let { it1 ->
                                 if (!isScrollable) {
                                     position = binding.rvTestUnits.getChildAdapterPosition(it1)
                                     val unit = position + App.bookNumber * 30
-                                    if (unitAdapter.clickable) unitAdapter.setUnClick(position, unit)
+                                    if (unitAdapter.clickable) unitAdapter.setUnClick(
+                                        position,
+                                        unit
+                                    )
                                     else unitAdapter.setClick(position, unit)
                                 }
                             }
                         }
+
                         MotionEvent.ACTION_UP -> {
                             if (!isPosChanged && !isDone) {
                                 val unit = position + App.bookNumber * 30
@@ -91,11 +129,16 @@ class ActivityHome : Activity() {
                     true
                 }
                 binding.sbTestCount.setOnSeekBarChangeListener(object : OnSeekBarChangeListener {
-                    override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                    override fun onProgressChanged(
+                        seekBar: SeekBar?,
+                        progress: Int,
+                        fromUser: Boolean
+                    ) {
                         App.saveValue("test_count", progress)
                         App.testCount = progress * 5 + 5
                         binding.tvTestCount.text = "${App.testCount}"
                     }
+
                     override fun onStartTrackingTouch(seekBar: SeekBar?) {}
                     override fun onStopTrackingTouch(seekBar: SeekBar?) {}
                 })
@@ -107,7 +150,11 @@ class ActivityHome : Activity() {
                 App.bookNumber = 0
                 binding.rvTestBooks.adapter = AdapterTestBook(this, unitAdapter)
                 binding.bStartTest.setOnClickListener {
-                    if (App.testUnits.isEmpty()) Toast.makeText(this, "Unitlar tanlanishi kerak!", Toast.LENGTH_SHORT).show()
+                    if (App.testUnits.isEmpty()) Toast.makeText(
+                        this,
+                        "Unitlar tanlanishi kerak!",
+                        Toast.LENGTH_SHORT
+                    ).show()
                     else {
                         if (App.getInt("warned") < 3) {
                             Toast.makeText(this, "Imkon qadar to'g'ri bajaring!", Toast.LENGTH_LONG).show()
@@ -130,7 +177,11 @@ class ActivityHome : Activity() {
                                         binding.tvIncorrectAnswers.text = "Noto'g'ri javoblar soni - ${size} ta"
                                         binding.tvBall.text = "Sizning natijangiz ${(App.testCount - size) * 100 / App.testCount}%"
                                         binding.tvCongrats.visibility = if (size == 0) View.VISIBLE else View.GONE
-                                    } else { adapter.currentTest++; adapter.next() }
+                                    }
+                                else {
+                                    adapter.currentTest++
+                                    adapter.next()
+                                }
                             }
                         }
                     }
@@ -156,6 +207,8 @@ class ActivityHome : Activity() {
                 binding.tvContact2.movementMethod = LinkMovementMethod.getInstance()
             }
         }
-        binding.ibBack.setOnClickListener { onBackPressed() }
+        binding.ibBack.setOnClickListener {
+            onBackPressed()
+        }
     }
 }

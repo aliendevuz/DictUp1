@@ -1,6 +1,5 @@
 package uz.alien.dictup.adapter
 
-
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,11 +10,21 @@ import uz.alien.dictup.R
 import uz.alien.dictup.databinding.ItemListBinding
 import uz.alien.dictup.source.CustomLayoutManager
 
+class AdapterUnit(private val activity: ActivityHome) :
+    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-class AdapterUnit(private val activity: ActivityHome) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    class UnitViewHolder(view: View) : RecyclerView.ViewHolder(view) { val binding = ItemListBinding.bind(view) }
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder = UnitViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_list, parent, false))
+    class UnitViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        val binding = ItemListBinding.bind(view)
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        return UnitViewHolder(
+            LayoutInflater.from(parent.context).inflate(R.layout.item_list, parent, false)
+        )
+    }
+
     override fun getItemCount() = 30
+
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is UnitViewHolder) {
             holder.binding.tvText.text = "unit ${position + 1}"
